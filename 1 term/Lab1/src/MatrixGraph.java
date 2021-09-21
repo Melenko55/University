@@ -1,5 +1,4 @@
-import java.util.Arrays;
-import java.util.Scanner;
+import java.util.*;
 
 public class MatrixGraph<T> {
     MatrixGraphNode[][] matrixGraph;
@@ -46,9 +45,9 @@ public class MatrixGraph<T> {
     }
 
     void showMatrixGraph() {
-        for (int i = 0; i < matrixGraph.length; i++) {
-            for (int j = 0; j < matrixGraph.length; j++) {
-                System.out.print((matrixGraph[i][j].isConnected() ? 1 : 0) + " ");
+        for (int i = 0; i < this.matrixGraph.length; i++) {
+            for (int j = 0; j < this.matrixGraph.length; j++) {
+                System.out.print((this.matrixGraph[i][j].isConnected() ? 1 : 0) + " ");
             }
             System.out.println();
         }
@@ -89,7 +88,7 @@ public class MatrixGraph<T> {
             matrixGraph[i][matrixGraph.length - 1] = new MatrixGraphNode(this.matrixGraph[i][0].getData(), false);
         }
 
-        System.out.println("Okay, what about connections?(y/n)");
+        System.out.println("Added new vertex!Okay, what about connections?(y/n)");
         while (!scanner.nextLine().equals("n")) {
             int index;
             System.out.println("Choose the index of vertex to connect: ");
@@ -106,6 +105,33 @@ public class MatrixGraph<T> {
     }
 
     void removeVertex(int vertexNum) {
+        MatrixGraphNode[][] matrixGraph = new MatrixGraphNode[this.matrixGraph.length - 1][this.matrixGraph.length - 1];
+        int p = 0 ;
 
+        for (int i = 0; i < this.matrixGraph.length; i++) {
+            if (i == vertexNum) continue;
+            int q = 0;
+            for (int j = 0; j < this.matrixGraph.length; j++) {
+                if (j == vertexNum) continue;
+                matrixGraph[p][q] = this.matrixGraph[i][j];
+                q++;
+            }
+            p++;
+        }
+        System.out.println("Graph vertex #" + vertexNum +  " successfully deleted");
+        this.matrixGraph = matrixGraph;
+    }
+
+    boolean checkConnectivity() {
+        HashSet<Integer> visited = new HashSet<>();
+        for (int i = 0; i < this.matrixGraph.length; i++) {
+            for (int j = 0; j < this.matrixGraph.length; j++) {
+                if (this.matrixGraph[i][j].isConnected() && i != j) {
+                    visited.add(i);
+                    visited.add(j);
+                }
+            }
+        }
+        return visited.size() == this.matrixGraph.length;
     }
 }

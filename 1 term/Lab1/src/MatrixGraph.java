@@ -122,6 +122,10 @@ public class MatrixGraph<T> {
         this.matrixGraph = matrixGraph;
     }
 
+    void getVertexData(int vertexNum) {
+        System.out.println("Data " + this.matrixGraph[vertexNum][0].getData());
+    }
+
     boolean checkConnectivity() {
         HashSet<Integer> visited = new HashSet<>();
         for (int i = 0; i < this.matrixGraph.length; i++) {
@@ -133,5 +137,26 @@ public class MatrixGraph<T> {
             }
         }
         return visited.size() == this.matrixGraph.length;
+    }
+
+    int getDistance(int src, int dest) {
+        HashSet<Integer> visitedBefore = new HashSet<>();
+        ArrayList<Integer> results = new ArrayList<>();
+        this.getWays(src, dest, 0, results, visitedBefore);
+        return Collections.min(results);
+    }
+
+    void getWays(int line, int dest, int curSize, ArrayList<Integer> results, HashSet<Integer> visitedBefore) {
+        for (int i = 0; i < this.matrixGraph.length; i++) {
+            if (line == i || visitedBefore.contains(i)) continue;
+            if (matrixGraph[line][i].isConnected()) {
+                if (i == dest) {
+                    results.add(++curSize);
+                    return;
+                }
+                visitedBefore.add(i);
+                this.getWays(i, dest, ++curSize, results, visitedBefore);
+            }
+        }
     }
 }

@@ -4,7 +4,7 @@ public class Main {
 
     public static void showMenu() {
         System.out.println("\nPossible options: ");
-        System.out.println("1 - show Graph\n2 - add Vertex\n3 - remove Vertex\n4 - add Line\n5 - remove Line\n6 - check graph for connectivity\n0 - stop program\n");
+        System.out.println("1 - show Graph\n2 - add Vertex\n3 - remove Vertex\n4 - add Line\n5 - remove Line\n6 - check graph for connectivity\n7 - get data stored in vertex\n0 - stop program\n");
     }
 
     public static void main(String[] args) {
@@ -50,6 +50,18 @@ public class Main {
                     break;
                 case 6:
                     System.out.println(matrixGraph.checkConnectivity() ? "Graph is connected!" : "Graph is not connected!");
+                    break;
+                case 7:
+                    System.out.println("Vertex index:");
+                    vertexIndex = Integer.parseInt(scanner.nextLine());
+                    matrixGraph.getVertexData(vertexIndex);
+                    break;
+                case 8:
+                    System.out.print("Firs vertex:");
+                    lineIndex1 = Integer.parseInt(scanner.nextLine());
+                    System.out.print("Second vertex:");
+                    lineIndex2 = Integer.parseInt(scanner.nextLine());
+                    System.out.println("Distance between " + lineIndex1 + " and " + lineIndex2 + " is " + matrixGraph.getDistance(lineIndex1, lineIndex2));
                     break;
             }
             showMenu();

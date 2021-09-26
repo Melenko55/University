@@ -8,13 +8,22 @@ public class BookSeries {
     String nameOfSeria;
     ArrayList<Book> seriaBooks;
 
-    BookSeries(String nameOfSeria) {
+    ArrayList<Book> getSeriaBooks() {
+        return this.seriaBooks;
+    }
+
+    public BookSeries(String nameOfSeria, ArrayList<Book> books) {
         this.nameOfSeria = nameOfSeria;
+        this.seriaBooks = books;
     }
 
     void sortBooks() {
         seriaBooks.sort(new SortByDate());
     };
+
+    void addBook(Book book) {
+        this.seriaBooks.add(book);
+    }
 
     @Override
     public String toString() {

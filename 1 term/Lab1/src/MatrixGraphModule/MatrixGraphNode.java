@@ -1,3 +1,5 @@
+package MatrixGraphModule;
+
 public class MatrixGraphNode<T> {
     private T data;
     private boolean isConnected;
@@ -25,7 +27,7 @@ public class MatrixGraphNode<T> {
 
     @Override
     public String toString() {
-        return "MatrixGraphNode{" +
+        return "MatrixGraphModule.MatrixGraphNode{" +
                 "data=" + data +
                 ", isConnected=" + isConnected +
                 '}';

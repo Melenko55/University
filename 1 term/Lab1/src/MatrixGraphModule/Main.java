@@ -1,17 +1,20 @@
+package MatrixGraphModule;
+
 import java.util.Scanner;
 
 public class Main {
 
     public static void showMenu() {
         System.out.println("\nPossible options: ");
-        System.out.println("1 - show Graph\n2 - add Vertex\n3 - remove Vertex\n4 - add Line\n5 - remove Line\n6 - check graph for connectivity\n7 - get data stored in vertex\n0 - stop program\n");
+        System.out.println("1 - show Graph\n2 - add Vertex\n3 - remove Vertex\n4 - add Line\n5 - remove Line\n6 - check graph for connectivity\n7 - get data stored in vertex\n8 - get distance between vertexes\n9 - BFS\n0 - stop program\n");
     }
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        Integer[] arr = new Integer[] {7, 8, 9, 10};
-        MatrixGraph<Integer> matrixGraph = new MatrixGraph<Integer>(arr);
 
+        Scanner scanner = new Scanner(System.in);
+        Integer[] arr = new Integer[] {7, 8, 9};
+        MatrixGraph<Integer> matrixGraph = new MatrixGraph<Integer>(arr);
+        matrixGraph.init();
         showMenu();
         int userChoise = Integer.parseInt(scanner.nextLine());
         int vertexIndex, lineIndex1, lineIndex2;
@@ -42,7 +45,7 @@ public class Main {
                     matrixGraph.addGraphLine(lineIndex1, lineIndex2);
                     break;
                 case 5:
-                    System.out.print("Firs vertex:");
+                    System.out.print("First vertex:");
                     lineIndex1 = Integer.parseInt(scanner.nextLine());
                     System.out.print("Second vertex:");
                     lineIndex2 = Integer.parseInt(scanner.nextLine());
@@ -57,16 +60,20 @@ public class Main {
                     matrixGraph.getVertexData(vertexIndex);
                     break;
                 case 8:
-                    System.out.print("Firs vertex:");
+                    System.out.print("First vertex:");
                     lineIndex1 = Integer.parseInt(scanner.nextLine());
                     System.out.print("Second vertex:");
                     lineIndex2 = Integer.parseInt(scanner.nextLine());
                     System.out.println("Distance between " + lineIndex1 + " and " + lineIndex2 + " is " + matrixGraph.getDistance(lineIndex1, lineIndex2));
                     break;
+                case 9:
+                    System.out.println("Index of vertex to begin:");
+                    vertexIndex = Integer.parseInt(scanner.nextLine());
+                    matrixGraph.BFS(vertexIndex);
+                    break;
             }
             showMenu();
             userChoise = Integer.parseInt(scanner.nextLine());
         }
-
     }
 }

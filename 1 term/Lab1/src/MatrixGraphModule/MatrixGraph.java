@@ -1,7 +1,9 @@
+package MatrixGraphModule;
+
 import java.util.*;
 
 public class MatrixGraph<T> {
-    MatrixGraphNode[][] matrixGraph;
+    MatrixGraphNode<T>[][] matrixGraph;
 
     MatrixGraph(T[] dataArr) {
 
@@ -18,15 +20,14 @@ public class MatrixGraph<T> {
         }
 
         this.matrixGraph = matrixGraph;
-        init(dataArr);
     }
 
-    void init(T[] dataArr) {
+    void init() {
         Scanner scanner = new Scanner(System.in);
-        for (int i = 0; i < dataArr.length ; i++) {
+        for (int i = 0; i < this.matrixGraph.length ; i++) {
             String userChoise;
-            System.out.println("Your data - " + dataArr[i] + ".You can add connection with other vertexes in range from 0 to " +
-                    (dataArr.length - 1) + ", this one is " + i + ".So, you do? y/n");
+            System.out.println("You can add connection with other vertexes in range from 0 to " +
+                    (this.matrixGraph.length - 1) + ", this one is " + i + ".So, you do? y/n");
             userChoise = scanner.nextLine();
             while (!userChoise.equals("n")) {
                 int index;
@@ -122,8 +123,9 @@ public class MatrixGraph<T> {
         this.matrixGraph = matrixGraph;
     }
 
-    void getVertexData(int vertexNum) {
+    T getVertexData(int vertexNum) {
         System.out.println("Data " + this.matrixGraph[vertexNum][0].getData());
+        return this.matrixGraph[vertexNum][0].getData();
     }
 
     boolean checkConnectivity() {
@@ -142,7 +144,7 @@ public class MatrixGraph<T> {
     int getDistance(int src, int dest) {
         HashSet<Integer> visitedBefore = new HashSet<>();
         ArrayList<Integer> results = new ArrayList<>();
-        this.getWays(src, dest, 0, results, visitedBefore);
+        this.getWays(src, dest, 1, results, visitedBefore);
         return Collections.min(results);
     }
 
@@ -151,11 +153,30 @@ public class MatrixGraph<T> {
             if (line == i || visitedBefore.contains(i)) continue;
             if (matrixGraph[line][i].isConnected()) {
                 if (i == dest) {
-                    results.add(++curSize);
+                    results.add(curSize);
                     return;
                 }
                 visitedBefore.add(i);
-                this.getWays(i, dest, ++curSize, results, visitedBefore);
+                this.getWays(i, dest, curSize++, results, visitedBefore);
+            }
+        }
+    }
+
+    void BFS(int start) {
+        ArrayDeque<Integer> deque = new ArrayDeque<>();
+        HashSet<Integer> visited = new HashSet<>();
+
+        deque.addLast(start);
+        visited.add(start);
+        System.out.println("BFS: ");
+        while(!deque.isEmpty()) {
+            int index = deque.pollFirst();
+            System.out.print(index + " ");
+            for (int i = 0; i < this.matrixGraph.length; i++) {
+                if (matrixGraph[index][i].isConnected() && i != index && !visited.contains(i)) {
+                    visited.add(i);
+                    deque.addLast(i);
+                }
             }
         }
     }

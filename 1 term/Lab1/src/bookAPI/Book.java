@@ -9,7 +9,7 @@ public class Book {
     int pages;
     String annotation;
 
-    Book(String bookName, String author, Date dateOfrelease, int pages, String annotation) {
+    public Book(String bookName, String author, Date dateOfrelease, int pages, String annotation) {
       this.bookName = bookName;
       this.author = author;
       this.dateOfrelease = dateOfrelease;
@@ -26,6 +26,4 @@ public class Book {
                 ", pages=" + pages +
                 ", annotation='" + annotation;
     }
-
-
 }

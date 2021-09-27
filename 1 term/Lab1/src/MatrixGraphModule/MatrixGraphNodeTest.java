@@ -24,11 +24,11 @@ class MatrixGraphNodeTest {
 
     @org.junit.jupiter.api.Test
     void workingWithData() {
-        ArrayList<java.io.Serializable> arrayList = new ArrayList<>(asList("Tests", "for", "All"));
+        ArrayList arrayList = new ArrayList<>(asList("Tests", "for", "All"));
         MatrixGraphNode<Integer> testingInt = new MatrixGraphNode<>(7, true);
         MatrixGraphNode<Double> testingDouble = new MatrixGraphNode<>(8.0, true);
         MatrixGraphNode<String> testingString = new MatrixGraphNode<>("Data1", true);
-        MatrixGraphNode<ArrayList<java.io.Serializable>> testingArray = new MatrixGraphNode<>(arrayList, true);
+        MatrixGraphNode<ArrayList> testingArray = new MatrixGraphNode<>(arrayList, true);
 
         //Initial
         Assertions.assertEquals(7, testingInt.getData(), "Test int getData");

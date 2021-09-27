@@ -46,6 +46,10 @@ public class ListGraphNode<T> {
                 "}\n";
     }
 
+    public HashSet<Integer> getConnectedVertex() {
+        return connectedVertex;
+    }
+
     public void setVertexId(int vertexId) {
         this.vertexId = vertexId;
     }

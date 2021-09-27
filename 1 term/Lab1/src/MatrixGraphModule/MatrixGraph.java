@@ -129,35 +129,43 @@ public class MatrixGraph<T> {
     }
 
     boolean checkConnectivity() {
-        HashSet<Integer> visited = new HashSet<>();
-        for (int i = 0; i < this.matrixGraph.length; i++) {
-            for (int j = 0; j < this.matrixGraph.length; j++) {
-                if (this.matrixGraph[i][j].isConnected() && i != j) {
-                    visited.add(i);
-                    visited.add(j);
+        ArrayList<Integer> visited = new ArrayList<>();
+        ArrayDeque<Integer> deque = new ArrayDeque<>();
+
+        deque.add(0);
+
+        while (!deque.isEmpty()) {
+            int index = deque.pollFirst();
+            visited.add(index);
+            for (int i = 0; i < this.matrixGraph.length; i++) {
+                if (matrixGraph[index][i].isConnected() && i != index && !visited.contains(i) && !deque.contains(i)) {
+                    deque.addLast(i);
                 }
             }
         }
+
         return visited.size() == this.matrixGraph.length;
     }
 
     int getDistance(int src, int dest) {
-        HashSet<Integer> visitedBefore = new HashSet<>();
         ArrayList<Integer> results = new ArrayList<>();
-        this.getWays(src, dest, 1, results, visitedBefore);
+        this.getWays(src, dest, 0, results,  new HashSet<>());
         return Collections.min(results);
     }
 
     void getWays(int line, int dest, int curSize, ArrayList<Integer> results, HashSet<Integer> visitedBefore) {
+        int size = curSize;
+        HashSet changedVisited = new HashSet(visitedBefore);
+        changedVisited.add(line);
         for (int i = 0; i < this.matrixGraph.length; i++) {
-            if (line == i || visitedBefore.contains(i)) continue;
+            if (changedVisited.contains(i)) continue;
             if (matrixGraph[line][i].isConnected()) {
                 if (i == dest) {
-                    results.add(curSize);
+                    results.add(++size);
                     return;
                 }
                 visitedBefore.add(i);
-                this.getWays(i, dest, curSize++, results, visitedBefore);
+                this.getWays(i, dest, ++curSize, results, changedVisited);
             }
         }
     }

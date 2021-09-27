@@ -84,28 +84,31 @@ public class ListGraph<T> {
     }
 
     int getDistance(int vertex1, int vertex2) {
-        ArrayList<Integer> visited = new ArrayList<>();
         ArrayList<Integer> results = new ArrayList<>();
-
-        this.getWays(vertex1, vertex2, 0, results, visited);
-        System.out.println("Results :" + results);
+        this.getWays(vertex1, vertex2, 0, results, new ArrayList<>());
         return Collections.min(results);
     }
 
     void getWays(int line, int dest, int curSize, ArrayList<Integer> results, ArrayList<Integer> visitedBefore) {
+        ArrayList changedVisited = new ArrayList(visitedBefore);
+        if (!changedVisited.contains(line)) {
+            changedVisited.add(line);
+        }
+        int notChangedSize = curSize;
         for (int vertex : this.listOfVertexes.get(line).connectedVertex) {
-            if (visitedBefore.contains(vertex)) continue;
+            if (changedVisited.contains(vertex)) continue;
             if (vertex == dest) {
-                results.add(++curSize);
+                results.add(++notChangedSize);
                 return;
             }
-            visitedBefore.add(vertex);
-            getWays(vertex, dest, ++curSize, results, visitedBefore);
+            changedVisited.add(vertex);
+            getWays(vertex, dest, ++curSize, results, changedVisited);
         }
     }
 
-    void getVertexData(int vertexId) {
+    T getVertexData(int vertexId) {
         System.out.println(this.listOfVertexes.get(vertexId).getData());
+        return this.listOfVertexes.get(vertexId).getData();
     }
 
 }

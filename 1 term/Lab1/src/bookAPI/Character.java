@@ -13,7 +13,7 @@ public class Character {
 
         @Override
         public String toString() {
-            return "Book: " + this.book + "\nParticipation: "  + this.participation;
+            return this.book + "\nParticipation: "  + this.participation;
         }
     }
     ArrayList<String> listOfPseudo = new ArrayList<>();

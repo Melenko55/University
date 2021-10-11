@@ -1,0 +1,4 @@
+﻿  CyclicShift.cpp
+D:\University\1 term\Algoritms\Lab2\CyclicShift\CyclicShift\CyclicShift.cpp(18,20): warning C4018: <: несоответствие типов со знаком и без знака
+D:\University\1 term\Algoritms\Lab2\CyclicShift\CyclicShift\CyclicShift.cpp(25,16): warning C4018: >: несоответствие типов со знаком и без знака
+  CyclicShift.vcxproj -> D:\University\1 term\Algoritms\Lab2\CyclicShift\Debug\CyclicShift.exe

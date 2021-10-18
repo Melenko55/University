@@ -1,0 +1,15 @@
+D:\University\Term1\Lab2\Timer\Timer\bin\Debug\Timer.exe.config
+D:\University\Term1\Lab2\Timer\Timer\bin\Debug\Timer.exe
+D:\University\Term1\Lab2\Timer\Timer\bin\Debug\Timer.pdb
+D:\University\Term1\Lab2\Timer\Timer\obj\Debug\Timer.csprojAssemblyReference.cache
+D:\University\Term1\Lab2\Timer\Timer\obj\Debug\MainWindow.g.cs
+D:\University\Term1\Lab2\Timer\Timer\obj\Debug\App.g.cs
+D:\University\Term1\Lab2\Timer\Timer\obj\Debug\Timer_MarkupCompile.cache
+D:\University\Term1\Lab2\Timer\Timer\obj\Debug\Timer_MarkupCompile.lref
+D:\University\Term1\Lab2\Timer\Timer\obj\Debug\MainWindow.baml
+D:\University\Term1\Lab2\Timer\Timer\obj\Debug\Timer.g.resources
+D:\University\Term1\Lab2\Timer\Timer\obj\Debug\Timer.Properties.Resources.resources
+D:\University\Term1\Lab2\Timer\Timer\obj\Debug\Timer.csproj.GenerateResource.cache
+D:\University\Term1\Lab2\Timer\Timer\obj\Debug\Timer.csproj.CoreCompileInputs.cache
+D:\University\Term1\Lab2\Timer\Timer\obj\Debug\Timer.exe
+D:\University\Term1\Lab2\Timer\Timer\obj\Debug\Timer.pdb

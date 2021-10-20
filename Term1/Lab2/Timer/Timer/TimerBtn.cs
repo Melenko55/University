@@ -22,9 +22,9 @@ namespace Timer
             if (!isStopped) timeLeft = timeLeft.Add(TimeSpan.FromSeconds(-1));
         }
 
-        public String getTime()
+        public TimeSpan getTime()
         {
-            return timeLeft.ToString();
+            return timeLeft;
         }
 
         public void toggleTimer()

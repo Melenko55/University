@@ -12,15 +12,50 @@
             <ColumnDefinition Width="550"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <UniformGrid x:Name="Timers" Columns="2" Rows="10">
-            <Button x:Name="TimerBtn"  Background="Red" FontWeight="Bold">Timer</Button>
-            <Button x:Name="AlarmBtn"  Background="#FFFFAE00"  FontWeight="Bold">Alarm</Button>
-            <Button x:Name="AddBtn"  Background="#FFFFAE00"  Click="AddBtn_Click">+</Button>
-        </UniformGrid>
-        <Canvas Grid.Column="1">
+        <Grid x:Name="ControlAndItemBlock">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="250"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid x:Name="Controls" Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="125"></ColumnDefinition>
+                    <ColumnDefinition Width="125"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+                <Button Grid.Row="0" Grid.Column="0" x:Name="TimerBtn" Click="TimerBtn_Click"  Background="Red" FontWeight="Bold">Timer</Button>
+                <Button Grid.Row="0" Grid.Column="1" x:Name="AlarmBtn" Click="AlarmBtn_Click" Background="#FFFFAE00"  FontWeight="Bold">Alarm</Button>
+                <Button Grid.Row="1" Grid.ColumnSpan="2" x:Name="AddBtn"  Background="#FFFFAE00"  Click="AddBtn_Click">+</Button>
+            </Grid>
+
+            <UniformGrid Columns="1" Rows="10" x:Name="Timers" Visibility="Visible" Grid.Row="1"></UniformGrid>
+            <UniformGrid Columns="1" Rows="10" x:Name="Alarms" Visibility="Hidden" Grid.Row="1">
+            </UniformGrid>
+
+        </Grid>
+
+
+        <Canvas x:Name="TimerDisplay" Grid.Column="1" >
             <Label x:Name="TimerValue" HorizontalAlignment="Center" VerticalAlignment="Center" Canvas.Left="144" Canvas.Top="130" Height="86" Width="269"  FontSize="72" Foreground="White" Content="00:00:00"/>
             <Button x:Name="ActivateBtn" Background="#FFFFAE00" Margin="0,0,0,0" Click="ToggleTimerAndCreateIfNew" Canvas.Left="221" Canvas.Top="263" Width="101" Height="37">START</Button>
             <TextBox x:Name="SetTime" Height="27" Canvas.Left="221" TextWrapping="Wrap" Text="00:00:00" Canvas.Top="221" Width="101"/>
+            <Label x:Name="TimersCounter" Content="Active Timers: 0" Height="30" Canvas.Left="346" Canvas.Top="21" Width="180" Foreground="White"/>
+            <Button x:Name="Disturb" Click="DisturbMode_Click" Content="Not Disturb" Height="26" Canvas.Left="375" Canvas.Top="51" Width="83" RenderTransformOrigin="0.325,0.256"/>
+        </Canvas>
+
+            
+        <Canvas x:Name="AlarmDisplay" Grid.Column="1" Visibility="Hidden">
+            <Button x:Name="ActivateBtn2" Background="#FFFFAE00" Margin="0,0,0,0" Click="ToggleAlarmAndCreateIfNew" Canvas.Left="216" Canvas.Top="235" Width="101" Height="37">ADD</Button>
+            <TextBox x:Name="SetAlarm" Background="Black" Foreground="White" Height="85" Canvas.Left="160" TextWrapping="Wrap" Text="00:00" Canvas.Top="129" Width="214" TextAlignment="Center" FontWeight="Bold" FontSize="72"/>
+            <Label x:Name="AlarmsCounter" Content="Active Alarms: 0" Height="30" Canvas.Left="346" Canvas.Top="21" Width="180" Foreground="White"/>
+            <Button x:Name="Disturb1"  Click="DisturbMode_Click" Content="Not Disturb" Height="26" Canvas.Left="375" Canvas.Top="51" Width="83" RenderTransformOrigin="0.325,0.256"/>
         </Canvas>
     </Grid>
 
